@@ -1,2 +1,6 @@
-# backup (dumps)
+# Realiza o backup diário a 00:00 AM
 0 0 * * * root /home/user/auto-backup/scripts/backup.sh > /dev/null
+
+
+# Realiza o envio do backup mais recente para o Google Drive
+0 0 * * 0 user /home/user/auto-backup/scripts/upload.sh > /dev/null
