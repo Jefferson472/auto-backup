@@ -1,0 +1,2 @@
+# backup (dumps)
+0 0 * * * root /home/user/auto-backup/scripts/backup.sh > /dev/null
