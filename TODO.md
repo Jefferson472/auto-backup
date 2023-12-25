@@ -1,0 +1,3 @@
+- [ ] Adicionar um envio de email ao final da exeução;
+- [ ] Adicionar uma função para remoção de backups muito antigos;
+- [ ] Adicionar variáveis de ambiente no projeto;
