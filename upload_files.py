@@ -62,9 +62,10 @@ def upload_with_conversion():
         subfolder_file = service.files().create(body=file_metadata, fields="id").execute()
         subfolder_id = subfolder_file.get("id")
 
-        for file in os.listdir(BACKUP_FOLDER):
+        db_folder = BACKUP_FOLDER + "/postgres"
+        for file in os.listdir(db_folder):
             file_metadata = {"name": file, "parents": [subfolder_id]}
-            media = MediaFileUpload(f"{BACKUP_FOLDER}/{file}")
+            media = MediaFileUpload(f"{db_folder}/{file}")
             file = (
                 service.files()
                 .create(body=file_metadata, media_body=media, fields="id")
