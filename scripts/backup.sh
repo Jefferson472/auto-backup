@@ -12,6 +12,8 @@ fi
 
 SEU_USUARIO=user
 
+EMAIL=email@email.com
+
 DATA=$(date +%Y-%m-%d_%H-%M)
 
 # Diretorio local de backup
@@ -64,5 +66,8 @@ done
 # Backup de usuarios do Postgresql
 
 su - postgres -c "pg_dumpall --globals-only -S postgres > $PBACKUP/$DATA/postgres/usuarios.sql"
+
+# envia um email ao final da execução
+su -c 'echo "Backup finalizado" |mutt -s "Backup $HOST Finalizado!" $EMAIL' -s '/bin/bash' $SEU_USUARIO
 
 exit 0
