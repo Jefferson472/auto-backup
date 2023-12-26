@@ -6,3 +6,8 @@
 # Realiza o envio do backup mais recente para o Google Drive
 # 'crontab -e' para rodar com seu user
 0 0 * * 0 cd /home/user/auto-backup && scripts/upload.sh > /home/user/auto-backup/logs/cron.log 2>&1
+
+
+# Realiza a limpeza removendo os arquivos mais antigos do que a política de armazenamento remoto
+# 'crontab -e' para rodar com seu user
+0 0 1 * * cd /home/user/auto-backup && scripts/delete.sh > /home/user/auto-backup/logs/cron.log 2>&1
