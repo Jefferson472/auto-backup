@@ -1,6 +1,8 @@
 # Realiza o backup diário a 00:00 AM
-0 0 * * * root /home/user/auto-backup/scripts/backup.sh > /dev/null
+# 'sudo crontab -e' para rodar como root
+0 0 * * * /home/user/auto-backup/scripts/backup.sh > /home/user/auto-backup/logs/cron.log 2>&1
 
 
 # Realiza o envio do backup mais recente para o Google Drive
-0 0 * * 0 user /home/user/auto-backup/scripts/upload.sh > /dev/null
+# 'crontab -e' para rodar com seu user
+0 0 * * 0 cd /home/user/auto-backup && scripts/upload.sh > /home/user/auto-backup/logs/cron.log 2>&1
