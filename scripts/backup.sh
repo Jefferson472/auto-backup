@@ -8,21 +8,22 @@ if [ "$(id -u)" != "0" ]; then
   exit 1
 fi
 
+# Carregar variáveis do arquivo .env
+if [ -f .env ]; then
+    source .env
+fi
+
 # Variaveis de Ambiente
-
-SEU_USUARIO=user
-
-EMAIL=email@email.com
 
 DATA=$(date +%Y-%m-%d_%H-%M)
 
 # Diretorio local de backup
-PBACKUP="/home/$SEU_USUARIO/backup"
+PBACKUP=$PATH_TO_BACKUP_FOLDER
 
 
 # LIMPEZA
 # Os arquivos dos ultimos NDIAS dias serao mantidos
-NDIAS="30"
+NDIAS=$POLITICA_ARMAZANAMENTO_LOCAL
 
 if [ ! -d ${PBACKUP} ]; then
 	echo ""
@@ -68,6 +69,6 @@ done
 su - postgres -c "pg_dumpall --globals-only -S postgres > $PBACKUP/$DATA/postgres/usuarios.sql"
 
 # envia um email ao final da execução
-su -c 'echo "Backup finalizado" |mutt -s "Backup $HOST Finalizado!" $EMAIL' -s '/bin/bash' $SEU_USUARIO
+su -c 'echo "Backup finalizado" |mutt -s "Backup $HOST Finalizado!" $RECEIVER_EMAIL' -s '/bin/bash' $USUARIO
 
 exit 0
