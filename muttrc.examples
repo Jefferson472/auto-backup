@@ -1,0 +1,15 @@
+# Configurações gerais
+set realname = "Seu Nome"
+set from = "seu_email@gmail.com"
+set imap_user = "seu_email@gmail.com"
+set imap_pass = "sua_senha"
+set folder = "imaps://imap.gmail.com/"
+set spoolfile = "+INBOX"
+set imap_check_subscribed
+set postponed = "+[Gmail]/Drafts"
+
+# Configurações específicas para Gmail
+set smtp_url = "smtps://seu_email@gmail.com@smtp.gmail.com:465/"
+set smtp_pass = "sua_senha"
+set ssl_force_tls = yes
+set ssl_starttls = yes
