@@ -48,13 +48,13 @@ def upload_with_conversion():
             )
             print(f'File: "{file}" has been uploaded.')
 
-    except HttpError as error:
+        send_email(subject="Sucesso ao fazer Upload", body=GDRIVE_BACKUP_LINK)
+        return file.get("id")
+
+    except Exception as error:
         print(f"An error occurred: {error}")
         file = None
-        send_email(subject="Erro ao gravar backup", body=error)
-
-    send_email(subject="Sucesso ao fazer Upload", body=GDRIVE_BACKUP_LINK)
-    return file.get("id")
+        send_email(subject="Erro ao gravar backup", body=str(error))
 
 
 if __name__ == "__main__":
