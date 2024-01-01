@@ -30,7 +30,7 @@ def send_email(subject: str, body: str) -> None:
         server.starttls()
         server.login(sender_email, password)
         text = message.as_string()
-        server.sendmail(sender_email, receiver_email, text)
+        server.sendmail(sender_email, receiver_email.split(","), text)
         print('E-mail enviado com sucesso!')
     except Exception as e:
         print(f'Erro ao enviar o e-mail: {e}')
