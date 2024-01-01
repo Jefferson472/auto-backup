@@ -69,6 +69,6 @@ done
 su - postgres -c "pg_dumpall --globals-only -S postgres > $PBACKUP/$DATA/postgres/usuarios.sql"
 
 # envia um email ao final da execução
-su -c 'echo "Backup finalizado" |mutt -s "Backup $HOST Finalizado!" $RECEIVER_EMAIL' -s '/bin/bash' $USUARIO
+su -c "echo 'Backup finalizado' | mutt -s 'Backup $HOSTNAME Finalizado!' $RECEIVER_EMAIL" -s '/bin/bash' $USUARIO
 
 exit 0
