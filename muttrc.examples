@@ -4,7 +4,7 @@ set from = "user@domain.com"
 set realname = "Firstname Lastname"
 
 # My credentials
-set smtp_url = "smtp://user@domain.com@smtp.domain.com:587/"
+set smtp_url = "smtp://user@domain.com@email-ssl.com.br:587/"
 set smtp_pass = "password"
 set imap_user = "user@domain.com"
 set imap_pass = "password"
