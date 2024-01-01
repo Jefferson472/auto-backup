@@ -1,15 +1,30 @@
-# Configurações gerais
-set realname = "Seu Nome"
-set from = "seu_email@gmail.com"
-set imap_user = "seu_email@gmail.com"
-set imap_pass = "sua_senha"
-set folder = "imaps://imap.gmail.com/"
-set spoolfile = "+INBOX"
-set imap_check_subscribed
-set postponed = "+[Gmail]/Drafts"
+# vi ~/.muttrc
+# About Me
+set from = "user@domain.com"
+set realname = "Firstname Lastname"
 
-# Configurações específicas para Gmail
-set smtp_url = "smtps://seu_email@gmail.com@smtp.gmail.com:465/"
-set smtp_pass = "sua_senha"
-set ssl_force_tls = yes
-set ssl_starttls = yes
+# My credentials
+set smtp_url = "smtp://user@domain.com@smtp.domain.com:587/"
+set smtp_pass = "password"
+set imap_user = "user@domain.com"
+set imap_pass = "password"
+
+# My mailboxes
+set folder = "imaps://imap.domain.com:993"
+set spoolfile = "+INBOX"
+
+
+# Where to put the stuff
+set header_cache = "~/.mutt/cache/headers"
+set message_cachedir = "~/.mutt/cache/bodies"
+set certificate_file = "~/.mutt/certificates"
+
+# Etc
+set mail_check = 30
+set move = no
+set imap_keepalive = 900
+set sort = threads
+set editor = "vim"
+
+# GnuPG bootstrap
+# source ~/.mutt/gpg.rc
