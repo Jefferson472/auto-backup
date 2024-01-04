@@ -11,6 +11,9 @@ fi
 # Carregar variáveis do arquivo .env
 if [ -f .env ]; then
     source .env
+else
+    echo "Arquivo .env não encontrado. O script será interrompido."
+    exit 1  # Saída com código de erro 1
 fi
 
 # Variaveis de Ambiente
