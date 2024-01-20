@@ -1,13 +1,13 @@
 # Realiza o backup diário a 00:00 AM
 # 'sudo crontab -e' para rodar como root
-0 0 * * * cd /home/user/auto-backup && scripts/backup.sh > /home/user/auto-backup/logs/cron.log 2>&1
+0 0 * * * cd /home/user/auto-backup && scripts/backup.sh >> /home/user/auto-backup/logs/cron.log 2>&1
 
 
 # Realiza o envio do backup mais recente para o Google Drive semanal domingo a 01:00 AM
 # 'crontab -e' para rodar com seu user
-0 1 * * 0 cd /home/user/auto-backup && scripts/upload.sh > /home/user/auto-backup/logs/cron.log 2>&1
+0 1 * * 0 cd /home/user/auto-backup && scripts/upload.sh >> /home/user/auto-backup/logs/cron.log 2>&1
 
 
 # Realiza a limpeza removendo os arquivos mais antigos do que a política de armazenamento remoto
 # mensal dia 1 a 00:00 AM
-0 0 1 * * cd /home/user/auto-backup && scripts/delete.sh > /home/user/auto-backup/logs/cron.log 2>&1
+0 0 1 * * cd /home/user/auto-backup && scripts/delete.sh >> /home/user/auto-backup/logs/cron.log 2>&1

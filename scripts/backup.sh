@@ -39,7 +39,7 @@ else
 	echo " Rotacionando backups mais antigos que $NDIAS"
 	echo ""
 
-	find ${PBACKUP} -type d -mtime +$NDIAS -exec rm -rf {} \;
+	find ${PBACKUP} -type d -mtime +$((NDIAS)) -exec rm -rf {} \; || true
 fi
 
 
