@@ -58,11 +58,11 @@ if [ ! -d $PBACKUP/$DATA/postgres ]; then
     chown -R postgres:postgres $PBACKUP/$DATA/postgres/
 fi
 
-docker exec -it ${CONTAINER_NAME} su - postgres -c "vacuumdb -a -f -z"
+docker exec ${CONTAINER_NAME} su - postgres -c "vacuumdb -a -f -z"
 
-for basepostgres in $(docker exec -it ${CONTAINER_NAME} su - postgres -c "psql -l" | grep -v template0|grep -v template1|grep "|" |grep -v Owner |awk '{if ($1 != "|" && $1 != "Nome") print $1}'); do
+for basepostgres in $(docker exec ${CONTAINER_NAME} su - postgres -c "psql -l" | grep -v template0|grep -v template1|grep "|" |grep -v Owner |awk '{if ($1 != "|" && $1 != "Nome") print $1}'); do
 
-    docker exec -it ${CONTAINER_NAME} su - postgres -c "pg_dump --format=c $basepostgres" > $PBACKUP/$DATA/postgres/$basepostgres.dump
+    docker exec ${CONTAINER_NAME} su - postgres -c "pg_dump --format=c $basepostgres" > $PBACKUP/$DATA/postgres/$basepostgres.dump
 
     cd $PBACKUP/$DATA/postgres/
 
@@ -76,7 +76,7 @@ done
 
 # Backup de usuarios do Postgresql
 
-docker exec -it ${CONTAINER_NAME} su - postgres -c "pg_dumpall --globals-only -S postgres > $PBACKUP/$DATA/postgres/usuarios.sql"
+docker exec ${CONTAINER_NAME} su - postgres -c "pg_dumpall --globals-only -S postgres" > $PBACKUP/$DATA/postgres/usuarios.sql
 
 # envia um email ao final da execução
 su -c "echo 'Backup finalizado' | mutt -s 'Backup $HOSTNAME Finalizado!' $RECEIVER_EMAIL" -s '/bin/bash' $USUARIO_SISTEMA
