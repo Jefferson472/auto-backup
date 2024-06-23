@@ -33,3 +33,7 @@ def google_auth():
         send_email(subject="Erro na autenticação", body=ex)
 
     return creds
+
+
+if __name__ == "__main__":
+    google_auth()
