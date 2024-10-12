@@ -18,7 +18,7 @@ fi
 
 # Variaveis de Ambiente
 
-DATA=$(date +%Y-%m-%d_%H-%M)
+DATA=$(date +%Y-%m-%d)
 
 # Diretorio local de backup
 PBACKUP=$PATH_TO_BACKUP_FOLDER
@@ -55,6 +55,7 @@ fi
 if [ ! -d $PBACKUP/$DATA/postgres ]; then
     mkdir -p $PBACKUP/$DATA/postgres
     chown -R postgres:postgres $PBACKUP/$DATA/postgres/
+    chmod -R g+w $PBACKUP/$DATA
 fi
 
 su - postgres -c "vacuumdb -a -f -z"
@@ -78,6 +79,7 @@ done
 su - postgres -c "pg_dumpall --globals-only -S postgres > $PBACKUP/$DATA/postgres/usuarios.sql"
 
 # envia um email ao final da execução
-su -c "echo 'Backup finalizado' | mutt -s 'Backup $HOSTNAME Finalizado!' $RECEIVER_EMAIL" -s '/bin/bash' $USUARIO_SISTEMA
+echo "Enviando email"
+su - $USUARIO -c "echo 'Backup finalizado' | mutt -s 'Backup $HOSTNAME Finalizado!' $RECEIVER_EMAIL"
 
 exit 0
