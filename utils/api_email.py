@@ -12,7 +12,7 @@ load_dotenv()
 def send_email(subject: str, body: str) -> None:
     # Configurações do servidor SMTP do Gmail
     smtp_server = os.environ.get("SMTP_SERVER")
-    smtp_port = 587  # Porta TLS para o Gmail
+    smtp_port = os.environ.get("SMTP_PORT")
     sender_email = os.environ.get("EMAIL_HOST_USER")
     receiver_email = os.environ.get("RECEIVER_EMAIL")
     password = os.environ.get("EMAIL_HOST_PASSWORD")
