@@ -31,7 +31,7 @@ def delete_files():
             pageSize=1000, fields="files(id,name,createdTime)"
         ).execute()
 
-        folders_to_delete = [f for f in result["files"] if datetime.fromisoformat(f["createdTime"]) < n_days_ago]
+        folders_to_delete = [f for f in result["files"] if datetime.fromisoformat(f["createdTime"].replace("Z", "+00:00")) < n_days_ago]
 
         for folder in folders_to_delete:
             response = service.files().update(fileId=folder["id"], body={'trashed': True}).execute()
@@ -41,7 +41,7 @@ def delete_files():
 
     except Exception as ex:
         print(f"An error occurred: {ex}")
-        send_email(subject="Erro ao deletar backup antigo", body=ex)
+        send_email(subject="Erro ao deletar backup antigo", body=str(ex))
 
 
 if __name__ == "__main__":
